@@ -1,0 +1,33 @@
+---
+title: "Stanford NLP Tips"
+author: "Sam Portnow"
+date: 2019-06-10T21:13:14-05:00
+categories: ["R"]
+tags: ["NLP"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Tips on Standford NLP 
+
+There are several pacakges in R that use the [Stanford CoreNLP Software](https://stanfordnlp.github.io/CoreNLP/) (e.g. [cleanNLP](https://cran.r-project.org/web/packages/cleanNLP/index.html), [coreNLP](https://cran.r-project.org/web/packages/coreNLP/)). These packages are great for using CoreNLP, but for large projects they are *slowww*. For a recent project, I had to employ Named Enity Recognition on hundreds of thousands of document, and the aforementioned wrappers around Stanford CoreNLP were just too slow. What *significantly* sped things up was using the Stanford CoreNLP Software from the command line. With RMarkdown, I was able to do it all within RStudio. I also learned some helpful tips along the way. 
+
+The first step is to [download CoreNLP](https://stanfordnlp.github.io/CoreNLP/download.html). After it's downloaded,  set up a txt file that lists all of the files, separated by newlines that you want to annotate. And then, run Core NLP over all of them. The best thing about running from the terminal is I can specify the number of threads. I'm running 30 here. 
+
+```{bash eval = FALSE}
+cd ~/stanford-corenlp-full-2018-10-05
+
+java -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLP -filelist $agency_file -annotators "tokenize,ssplit,pos,lemma,ner" -threads 30 -outputFormat "json" -outputDirectory $dir
+```
+
+You can also parallelize Core NLP further, by specifying nthreads. With this specification, the parser can work on multiple sentences at once. However, when I experimented with this, I didn't have great results with Named Entity Recognition. 
+
+The other useful tip is to split long documents into single page documents. From the [CoreNLP Memory and Time Usage page](https://stanfordnlp.github.io/CoreNLP/memory-time.html):
+
+> A whole “document” is represented in memory while processing it. Therefore, if you have a large file, like a novel, the next secret to reducing memory usage is to not treat the whole file as a “document”. Process a large file a piece, say a chapter, at a time, not all at once.
+
+
+
+

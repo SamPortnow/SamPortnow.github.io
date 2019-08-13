@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on </title>
+    <link>/categories/r/</link>
+    <description>Recent content in R on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 10 Jun 2019 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Stanford NLP Tips</title>
+      <link>/post/2019-06-10-r-markdown/</link>
+      <pubDate>Mon, 10 Jun 2019 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2019-06-10-r-markdown/</guid>
+      <description>Tips on Standford NLP There are several pacakges in R that use the Stanford CoreNLP Software (e.g. cleanNLP, coreNLP). These packages are great for using CoreNLP, but for large projects they are slowww. For a recent project, I had to employ Named Enity Recognition on hundreds of thousands of document, and the aforementioned wrappers around Stanford CoreNLP were just too slow. What significantly sped things up was using the Stanford CoreNLP Software from the command line.</description>
+    </item>
+    
+    <item>
+      <title>IRT From Scratch</title>
+      <link>/post/2019-06-01-r-rmarkdown/</link>
+      <pubDate>Sat, 01 Jun 2019 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2019-06-01-r-rmarkdown/</guid>
+      <description>Programming an IRT, 2Pl Model from Scratch (So You Don’t Have to) I recently had a client that was looking to build a 2PL model from scratch. The 2PL describes the process through which someone gets a correct or incorrect response on a test. More specifically, the probability of person j providing a positive answer to item i is given by:
+\[Pr(Y_{ij} = 1| \theta) = exp(a_i(\theta_j - b_i)/(1 + exp(a_i(\theta_j - b_i))\] \[\theta \sim N(0, 1)\]</description>
+    </item>
+    
+    <item>
+      <title>Looking Through the Idiographic Filter</title>
+      <link>/post/2016-07-25-idiographicfilter/</link>
+      <pubDate>Mon, 25 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2016-07-25-idiographicfilter/</guid>
+      <description>For my dissertation, I&amp;rsquo;m going to apply causal inference techniques to three separate datasets to examine the impact of family income on school readiness skills, while examining supportive parenting and cognitive stimulation as mediators. For one dataset, the Secondary Education Childcare and Youth Development (SECCYD) dataset, I plan to use a longitundal fixed effects approach. Unfortunately, this approach makes examining supportive parenting as a mediator difficult because the items that assess supportive parenting change at different assessment points.</description>
+    </item>
+    
+    <item>
+      <title>Missing data in IV-cont&#39;d</title>
+      <link>/post/2016-07-03-missingdataivmi/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2016-07-03-missingdataivmi/</guid>
+      <description>In a recent post I pitted listedwise deletion against Full Information Maximum Likelihood (FIML) to see which outperformed which in an instrumental variables analysis (listwise deletion won). However, a big caveat of that analysis was that I didn&amp;rsquo;t use FIML to generate predicted values of x because lavaan can&amp;rsquo;t produce predicted values with incomplete data. So, this post is the same analysis, but with multiple imputation instead of FIML so that we can generated predicted values of x with the incomplete data.</description>
+    </item>
+    
+    <item>
+      <title>Missing data in IV</title>
+      <link>/post/2016-07-02-missingdataiv/</link>
+      <pubDate>Sat, 02 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2016-07-02-missingdataiv/</guid>
+      <description>What should you do with missing data in an instrumental variables analysis? For my dissertation, I&amp;rsquo;m using instrumental variables to examine the impact of family income on children&amp;rsquo;s cognitive skills. Having been trained as a psychologlist, there is an emphasis on handling missing data appropritately &amp;ndash; Full Information Maximum Likelihood (FIML) and Multiple Imputation (MI) are popular techniques. However, in the causal inference courses I&amp;rsquo;ve taken, there seems to be less of a focus on how to handle missing data.</description>
+    </item>
+    
+    <item>
+      <title>Residual Covariance</title>
+      <link>/post/2016-07-01-residualcovariance/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2016-07-01-residualcovariance/</guid>
+      <description>A Way to Look At Why Your SEM Model Has Poor Fit If you&amp;rsquo;ve done any Structural Equation Modeling, you&amp;rsquo;ve run into a bad fitting model. Embarassingly, aside from estimating covariances among correlated variables, I didn&amp;rsquo;t know much about how to inspect poor model fit until very recently. Enter the residual covariance matrix. It&amp;rsquo;s a super simple way to examine poor model fit.
+Here&amp;rsquo;s an example. You have 6 observed variables, and you want to create a latent factor.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NLP on </title>
+    <link>/tags/nlp/</link>
+    <description>Recent content in NLP on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 10 Jun 2019 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Stanford NLP Tips</title>
+      <link>/post/2019-06-10-r-markdown/</link>
+      <pubDate>Mon, 10 Jun 2019 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2019-06-10-r-markdown/</guid>
+      <description>Tips on Standford NLP There are several pacakges in R that use the Stanford CoreNLP Software (e.g. cleanNLP, coreNLP). These packages are great for using CoreNLP, but for large projects they are slowww. For a recent project, I had to employ Named Enity Recognition on hundreds of thousands of document, and the aforementioned wrappers around Stanford CoreNLP were just too slow. What significantly sped things up was using the Stanford CoreNLP Software from the command line.</description>
+    </item>
+    
+  </channel>
+</rss>

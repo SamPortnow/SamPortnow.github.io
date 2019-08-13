@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IRT on </title>
+    <link>/tags/irt/</link>
+    <description>Recent content in IRT on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 01 Jun 2019 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/irt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>IRT From Scratch</title>
+      <link>/post/2019-06-01-r-rmarkdown/</link>
+      <pubDate>Sat, 01 Jun 2019 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2019-06-01-r-rmarkdown/</guid>
+      <description>Programming an IRT, 2Pl Model from Scratch (So You Don’t Have to) I recently had a client that was looking to build a 2PL model from scratch. The 2PL describes the process through which someone gets a correct or incorrect response on a test. More specifically, the probability of person j providing a positive answer to item i is given by:
+\[Pr(Y_{ij} = 1| \theta) = exp(a_i(\theta_j - b_i)/(1 + exp(a_i(\theta_j - b_i))\] \[\theta \sim N(0, 1)\]</description>
+    </item>
+    
+  </channel>
+</rss>

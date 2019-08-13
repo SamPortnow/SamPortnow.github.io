@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on </title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 01 Jul 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CFA</title>
+      <link>/tags/cfa/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/cfa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IRT</title>
+      <link>/tags/irt/</link>
+      <pubDate>Sat, 01 Jun 2019 21:13:14 -0500</pubDate>
+      
+      <guid>/tags/irt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NLP</title>
+      <link>/tags/nlp/</link>
+      <pubDate>Mon, 10 Jun 2019 21:13:14 -0500</pubDate>
+      
+      <guid>/tags/nlp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SEM</title>
+      <link>/tags/sem/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/sem/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fiml</title>
+      <link>/tags/fiml/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/fiml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>idiographic filter</title>
+      <link>/tags/idiographic-filter/</link>
+      <pubDate>Mon, 25 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/idiographic-filter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>instrumental variables</title>
+      <link>/tags/instrumental-variables/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/instrumental-variables/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lavaan</title>
+      <link>/tags/lavaan/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/lavaan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>measurement invariance</title>
+      <link>/tags/measurement-invariance/</link>
+      <pubDate>Mon, 25 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/measurement-invariance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>missing data</title>
+      <link>/tags/missing-data/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/missing-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>multiple imputation</title>
+      <link>/tags/multiple-imputation/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/multiple-imputation/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

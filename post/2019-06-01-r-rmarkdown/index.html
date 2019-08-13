@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>IRT From Scratch - </title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Sam Portnow" /><meta name="description" content="Programming an IRT, 2Pl Model from Scratch (So You Don’t Have to) I recently had a client that was looking to build a 2PL model from scratch. The 2PL describes the process through which someone gets a correct or incorrect response on a test. More specifically, the probability of person j providing a positive answer to item i is given by:
+\[Pr(Y_{ij} = 1| \theta) = exp(a_i(\theta_j - b_i)/(1 &#43; exp(a_i(\theta_j - b_i))\] \[\theta \sim N(0, 1)\]" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.50 with even 4.0.0" />
+
+
+<link rel="canonical" href="/post/2019-06-01-r-rmarkdown/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="IRT From Scratch" />
+<meta property="og:description" content="Programming an IRT, 2Pl Model from Scratch (So You Don’t Have to) I recently had a client that was looking to build a 2PL model from scratch. The 2PL describes the process through which someone gets a correct or incorrect response on a test. More specifically, the probability of person j providing a positive answer to item i is given by:
+\[Pr(Y_{ij} = 1| \theta) = exp(a_i(\theta_j - b_i)/(1 &#43; exp(a_i(\theta_j - b_i))\] \[\theta \sim N(0, 1)\]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2019-06-01-r-rmarkdown/" /><meta property="article:published_time" content="2019-06-01T21:13:14-05:00"/>
+<meta property="article:modified_time" content="2019-06-01T21:13:14-05:00"/>
+
+<meta itemprop="name" content="IRT From Scratch">
+<meta itemprop="description" content="Programming an IRT, 2Pl Model from Scratch (So You Don’t Have to) I recently had a client that was looking to build a 2PL model from scratch. The 2PL describes the process through which someone gets a correct or incorrect response on a test. More specifically, the probability of person j providing a positive answer to item i is given by:
+\[Pr(Y_{ij} = 1| \theta) = exp(a_i(\theta_j - b_i)/(1 &#43; exp(a_i(\theta_j - b_i))\] \[\theta \sim N(0, 1)\]">
+
+
+<meta itemprop="datePublished" content="2019-06-01T21:13:14-05:00" />
+<meta itemprop="dateModified" content="2019-06-01T21:13:14-05:00" />
+<meta itemprop="wordCount" content="1112">
+
+
+
+<meta itemprop="keywords" content="IRT," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="IRT From Scratch"/>
+<meta name="twitter:description" content="Programming an IRT, 2Pl Model from Scratch (So You Don’t Have to) I recently had a client that was looking to build a 2PL model from scratch. The 2PL describes the process through which someone gets a correct or incorrect response on a test. More specifically, the probability of person j providing a positive answer to item i is given by:
+\[Pr(Y_{ij} = 1| \theta) = exp(a_i(\theta_j - b_i)/(1 &#43; exp(a_i(\theta_j - b_i))\] \[\theta \sim N(0, 1)\]"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo"></a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo"></a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">IRT From Scratch</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-06-01 </span>
+        <div class="post-category">
+            <a href="/categories/r/"> R </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      
+
+
+<div id="programming-an-irt-2pl-model-from-scratch" class="section level1">
+<h1>Programming an IRT, 2Pl Model from Scratch</h1>
+<div id="so-you-dont-have-to" class="section level2">
+<h2>(So You Don’t Have to)</h2>
+<p>I recently had a client that was looking to build a 2PL model from scratch. The 2PL describes the process through which someone gets a correct or incorrect response on a test. More specifically, the probability of person <em>j</em> providing a positive answer to item <em>i</em> is given by:</p>
+<p><span class="math display">\[Pr(Y_{ij} = 1| \theta) = exp(a_i(\theta_j - b_i)/(1 + exp(a_i(\theta_j - b_i))\]</span>
+<span class="math display">\[\theta \sim N(0, 1)\]</span></p>
+<p>In this model, <span class="math display">\[\alpha\]</span> represents the discrimination of item i, <span class="math display">\[\theta\]</span> represents the latent trait (i.e., ability) of person j, and <span class="math display">\[b\]</span> represents represents the difficulty of item i.</p>
+<p>The 2PL model is extremely similar to a logistic regression. In fact, it is often written in matrix notation form that is identical to a logistic regression:</p>
+<p><span class="math display">\[Pr(Y_{ij} = 1| \theta) = exp(a_i\theta_j + \beta_i)/(1 + exp(a_i\theta_j + \beta_i))\]</span>
+where</p>
+<p><span class="math display">\[ a_i = a_i \]</span> and <span class="math display">\[ b_i = -\beta_i/alpha_i\]</span></p>
+<p>The tricky part is that unlike a logistic regression, where X and Y are known, and you derive weights that make the best-fitting line for X on Y, with IRT, the only thing that is known is Y (the probability of passing an item). Everything else, alpha, beta, and theta are unknown.</p>
+<p>To solve this problem, the <a href="https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm">Expectation–maximization algorithm</a> is used. This procedure finds the maximum likelihood of estimates of parameters, when there are <strong>unobserved</strong> variables in the model. So, if you want to find parameter estimates for item discrimination and difficulty, you use the Expectation–maximization algorithm to account for the unobserved abilities. More specifically, you use a procedure known as Gaussian quadrature. With Gaussian quadrature, you assume that person abilities occur along a normal distribution, and so you divide a normal distribution into segments, with a representative value (i.e., the quadrature point), and a probability of occurrence (i.e., the weight). So, you pick a number of segments, and for each segment you derive the expected number of correct responses. Then with this expectation, you solve for item parameters. So, you have a list of item parameters over each of your segments, and then you apply weights and average over these item parameters, so that item parameters from unlikely person abilities are given less weight.</p>
+<p>Below, I break up the entire procedure into a set of functions (this code was cribbed from <a href="https://www.amazon.com/Item-Response-Theory-Estimation-Techniques/dp/0824758250">Baker’s awesome guide to IRT</a>)</p>
+<p>First, make a function to get the probability of getting an item right. You’ll notice that this is identical to a logistic regression.</p>
+<pre class="r"><code>Prob_Correct = function(alpha, beta, person_parameter){
+  
+  DEV=(-beta + alpha) * person_parameter;
+  EP=exp(DEV)
+  P=1/(1+EP);
+  return(P)
+  
+}</code></pre>
+<p>Second, get the likelihood of the computed probabilities. <strong>Note:</strong> there are three loops:</p>
+<ol style="list-style-type: decimal">
+<li>We loop over patterns (in a pre-processing stage, we group people into patterns of responses, to speed up processing time)</li>
+<li>Loop over quadrate points</li>
+<li>Loop over items</li>
+</ol>
+<p>In the end, we get a pattern likelihood where unlikely person traits are given less weight.</p>
+<pre class="r"><code>get_likelihood &lt;- function(Y, CPT, A, QuadPoints, Weights, NumPatterns){
+  
+  PL = rep(0, NumPatterns)
+  Prediction = c()
+  Likelihood = matrix(nrow = NumPatterns, ncol = 10)
+  
+  for (l in 1:NumPatterns){
+    
+    for (k in 1:10){
+      
+      for (i in 1:NumItems){
+        
+        item = Y[l, i]
+        Prediction[i] = Prob_Correct(CPT[i], A[i], QuadPoints[k])
+        Prediction[i] = ifelse(item == 1, Prediction, 1 - Prediction)
+        
+        if (is.na(Likelihood[l,k])){
+          Likelihood[l,k] = Prediction[i]
+        }else{
+          Likelihood[l,k] = Likelihood[l,k] * Prediction[i]
+        }
+      }
+    }
+    
+    PL[l] = sum(Likelihood[l,] * Weights)
+    
+  }
+  
+  return(list(Likelihood, PL))
+  
+}</code></pre>
+<p>Here, we get the expected item responses patterns. We return the expected correct number of responses, and the total nunber of responses for each item and for each unobserved person abilities.</p>
+<pre class="r"><code>get_rik_nik = function(Likelihood, Weights, PL){
+  
+  RIK = matrix(nrow=NumItems, ncol = 10, 0)
+  NIK = matrix(nrow=NumItems, ncol = 10, 0)
+  
+  for (i in 1:NumItems){
+    for (k in 1:10){
+      NT=(NumResponses * Likelihood[,k] * Weights[k])/PL
+      RT=NT*Y[,i]
+      RIK[i,k] = RIK[i,k] + sum(RT)
+      NIK[i,k]=  NIK[i,k] + sum(NT) 
+    }
+  }
+  
+  return(list(RIK, NIK))
+  
+}</code></pre>
+<p>Here we estimate the actual parameters.</p>
+<ul>
+<li>CPT = Intercept (annoyingly, beta is the intercept in IRT, and alpha is the slope).</li>
+<li>A = Slope</li>
+</ul>
+<p>Again, all values here used to calculate derivatives here were taken from <a href="https://www.amazon.com/Item-Response-Theory-Estimation-Techniques/dp/0824758250">Baker’s awesome guide to IRT</a>.</p>
+<pre class="r"><code>get_parameters &lt;- function(CPT, A, RIK, NIK, QuadPoints){
+  
+  
+  for (NIT in 1:100){
+    
+    SFW=0;
+    SFWV=0;
+    SFWV2=0;
+    SFWX=0;
+    SFWVX=0;
+    SFWX2=0 
+    
+    for (k in 1:10){
+      
+      PI = RIK[,k]/NIK[,k]
+      DEV = CPT + A * QuadPoints[k]
+      PH = 1/(1 + exp(-DEV))
+      W = PH * (1-PH)
+      
+      V = (PI - PH)/W
+      P1 = NIK[,k]*W;
+      P2=P1*V;
+      P3=P2*V;
+      P4=P1*QuadPoints[k];
+      P5=P4*QuadPoints[k];
+      P6=P4*V  
+      
+      SFW=SFW+P1;
+      SFWV=SFWV+P2;
+      SFWX=SFWX+P4;
+      SFWX2=SFWX2+P5;
+      SFWVX=SFWVX+P6;
+      
+      
+      
+    }
+    
+    
+    
+    DM=SFW*SFWX2-SFWX*SFWX
+    
+    if (any(DM &lt; .00009)){
+      print (&#39;an error occured!&#39;)
+      stop()
+    }
+    
+    DCPT=(SFWV*SFWX2-SFWVX*SFWX)/DM 
+    DA=(SFW*SFWVX-SFWX*SFWV)/DM      
+    
+    
+    if(sum(abs(DCPT))&lt;=.05 &amp; sum(abs(DA))&lt;=.05){
+      
+      break;
+    }
+    
+    CPT = CPT + DCPT
+    A = A + DA
+    
+    
+  }
+  
+  return(list(CPT, A))
+  
+  
+}</code></pre>
+<p>Here we estimate the actual item parameters</p>
+<pre class="r"><code>estimate_items = function(data, NumItems, QuadPoints, Weights, NumPatterns){
+  
+  CPT = rep(0, NumItems)
+  A = rep(1, NumItems)
+  
+  for (i in 1:100){
+    
+    
+    Likelihood_pl = get_likelihood(Y, CPT, A, QuadPoints, Weights, NumPatterns)
+    Likelihood = Likelihood_pl[[1]]
+    PL = Likelihood_pl[[2]]
+    
+    RIK_NIK = get_rik_nik(Likelihood, Weights, PL)
+    
+    RIK = RIK_NIK[[1]]
+    NIK = RIK_NIK[[2]]
+  
+    CPT_A = get_parameters(CPT, A, RIK, NIK, QuadPoints)
+    
+    if (sum(CPT - CPT_A[[1]]) &lt; .0001 &amp; sum(A - CPT_A[[2]]) &lt; .0001){
+      print (&#39;early return!&#39;)
+      break
+    }
+    
+    CPT = CPT_A[[1]]
+    A =  CPT_A[[2]]
+    
+    
+    
+  }
+  
+  return(list(CPT, A))
+  
+}</code></pre>
+<p>And now we can test!</p>
+<pre class="r"><code>#### Make Dummy Data 
+
+J = 5
+N = 100
+
+icc.2pl &lt;- function (thetas, alphas, betas, N, J){
+  
+  theta &lt;- matrix(thetas,ncol=1) %*% matrix(alphas,nrow=1) 
+  logits &lt;- (theta - t(matrix(betas,J,N))) 
+  probs &lt;- 1/(1+exp(-logits)) 
+  return(probs)
+}
+
+betas &lt;- rnorm(J, sd=2) 
+alphas &lt;- exp(rnorm(J,sd=.7))
+thetas &lt;- rnorm(100, sd=2) 
+
+# generate fake data
+probs &lt;- icc.2pl (thetas, alphas,betas,N,J) 
+
+# make random Y 
+Y &lt;- matrix(runif(N*J) ,nrow=N,ncol=J)
+# assign 1 and 0 
+Y &lt;- (ifelse (Y&lt;probs,1,0))
+Y = Y[do.call(order, as.data.frame(Y)),]  
+responses = Y
+
+# Make response patterns
+Response_Patterns = apply(Y, 1, paste, collapse=&quot;&quot;)
+# Get the Count of the response pattern
+GetCount &lt;- function(x, Response_Patterns){
+  x = paste(x, collapse = &quot;&quot;)
+  length(Response_Patterns[Response_Patterns==x])
+}
+
+NumResponses = apply(Y, 1, GetCount, Response_Patterns)
+# dont double count response patterns
+Keep = which(! duplicated(Y))
+NumResponses = NumResponses[Keep]
+Y = Y[Keep,]
+
+NumPatterns = nrow(Y)
+NumItems = ncol(Y)</code></pre>
+<p>Here we make upu the quadrature points and their associated weights.</p>
+<pre class="r"><code>QuadPoints = c(-4.0000,-3.1111,-2.2222,-1.3333,-.4444,.4444,1.3333, 2.2222,3.1111,4.0000)
+
+Weights = c(.000119,
+            .002805,
+            .03002,
+            .1458,
+            .3213,
+            .3213,
+            .1458,
+            .03002,
+            .002805,
+            .000119
+)</code></pre>
+<p>Now estimate</p>
+<pre class="r"><code>CPT_A = estimate_items(Y, NumItems, QuadPoints, Weights, NumPatterns)</code></pre>
+<pre><code>## [1] &quot;early return!&quot;</code></pre>
+<p>Let’s make sure we did okay</p>
+<pre class="r"><code>CPT = CPT_A[[1]] 
+A = CPT_A[[2]]
+
+sum(Prob_Correct(CPT, A, thetas))</code></pre>
+<pre><code>## [1] 51.17944</code></pre>
+<pre class="r"><code>sum(Prob_Correct(alphas, betas, thetas))</code></pre>
+<pre><code>## [1] 49.97478</code></pre>
+<p>Looks the predicted number of correct items is very close betwene the simulated parameters and the estimated parameters</p>
+<p>Further Reading:</p>
+<p>Baker, F. B., &amp; Kim, S. H. (2004). Item response theory: Parameter estimation techniques. CRC Press.</p>
+<p>Embretson, S. E., &amp; Reise, S. P. (2013). Item response theory. Psychology Press.</p>
+</div>
+</div>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Sam Portnow</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-06-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/irt/">IRT</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019-06-10-r-markdown/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Stanford NLP Tips</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019-05-01-r-rmarkdown/">
+            <span class="next-text nav-default">You Were Never Really Here</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:sam.portnow@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://stackoverflow.com/users/1708405/sam" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://www.linkedin.com/in/sam-portnow-5a46992b/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/SamPortnow" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/SamPortnow" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">olOwOlo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

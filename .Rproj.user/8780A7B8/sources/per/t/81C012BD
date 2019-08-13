@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1558222828085.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "389250137",
+    "id" : "81C012BD",
+    "lastKnownWriteTime" : 1562904348,
+    "last_content_update" : 1562904348038,
+    "path" : "~/sam-portnow/content/post/2019-05-01-r-rmarkdown.Rmd",
+    "project_path" : "content/post/2019-05-01-r-rmarkdown.Rmd",
+    "properties" : {
+        "cursorPosition" : "28,48",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

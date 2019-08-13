@@ -1,0 +1,23 @@
+---
+title: "Stanford NLP Tips"
+author: "Sam Portnow"
+date: 2019-06-10T21:13:14-05:00
+categories: ["R"]
+tags: ["NLP"]
+---
+
+
+
+<div id="tips-on-standford-nlp" class="section level1">
+<h1>Tips on Standford NLP</h1>
+<p>There are several pacakges in R that use the <a href="https://stanfordnlp.github.io/CoreNLP/">Stanford CoreNLP Software</a> (e.g. <a href="https://cran.r-project.org/web/packages/cleanNLP/index.html">cleanNLP</a>, <a href="https://cran.r-project.org/web/packages/coreNLP/">coreNLP</a>). These packages are great for using CoreNLP, but for large projects they are <em>slowww</em>. For a recent project, I had to employ Named Enity Recognition on hundreds of thousands of document, and the aforementioned wrappers around Stanford CoreNLP were just too slow. What <em>significantly</em> sped things up was using the Stanford CoreNLP Software from the command line. With RMarkdown, I was able to do it all within RStudio. I also learned some helpful tips along the way.</p>
+<p>The first step is to <a href="https://stanfordnlp.github.io/CoreNLP/download.html">download CoreNLP</a>. After it’s downloaded, set up a txt file that lists all of the files, separated by newlines that you want to annotate. And then, run Core NLP over all of them. The best thing about running from the terminal is I can specify the number of threads. I’m running 30 here.</p>
+<pre class="bash"><code>cd ~/stanford-corenlp-full-2018-10-05
+
+java -cp &quot;*&quot; edu.stanford.nlp.pipeline.StanfordCoreNLP -filelist $agency_file -annotators &quot;tokenize,ssplit,pos,lemma,ner&quot; -threads 30 -outputFormat &quot;json&quot; -outputDirectory $dir</code></pre>
+<p>You can also parallelize Core NLP further, by specifying nthreads. With this specification, the parser can work on multiple sentences at once. However, when I experimented with this, I didn’t have great results with Named Entity Recognition.</p>
+<p>The other useful tip is to split long documents into single page documents. From the <a href="https://stanfordnlp.github.io/CoreNLP/memory-time.html">CoreNLP Memory and Time Usage page</a>:</p>
+<blockquote>
+<p>A whole “document” is represented in memory while processing it. Therefore, if you have a large file, like a novel, the next secret to reducing memory usage is to not treat the whole file as a “document”. Process a large file a piece, say a chapter, at a time, not all at once.</p>
+</blockquote>
+</div>

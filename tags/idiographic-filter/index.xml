@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>idiographic filter on </title>
+    <link>/tags/idiographic-filter/</link>
+    <description>Recent content in idiographic filter on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 25 Jul 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/idiographic-filter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Looking Through the Idiographic Filter</title>
+      <link>/post/2016-07-25-idiographicfilter/</link>
+      <pubDate>Mon, 25 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2016-07-25-idiographicfilter/</guid>
+      <description>For my dissertation, I&amp;rsquo;m going to apply causal inference techniques to three separate datasets to examine the impact of family income on school readiness skills, while examining supportive parenting and cognitive stimulation as mediators. For one dataset, the Secondary Education Childcare and Youth Development (SECCYD) dataset, I plan to use a longitundal fixed effects approach. Unfortunately, this approach makes examining supportive parenting as a mediator difficult because the items that assess supportive parenting change at different assessment points.</description>
+    </item>
+    
+  </channel>
+</rss>

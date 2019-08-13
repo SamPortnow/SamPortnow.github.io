@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1562814548711.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1338207820",
+    "id" : "DF896E38",
+    "lastKnownWriteTime" : 1562816497,
+    "last_content_update" : 1562816497278,
+    "path" : "~/sam-portnow/content/about.md",
+    "project_path" : "content/about.md",
+    "properties" : {
+        "cursorPosition" : "25,163",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "markdown"
+}

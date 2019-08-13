@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Looking Through the Idiographic Filter - </title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Sam Portnow" /><meta name="description" content="For my dissertation, I&amp;rsquo;m going to apply causal inference techniques to three separate datasets to examine the impact of family income on school readiness skills, while examining supportive parenting and cognitive stimulation as mediators. For one dataset, the Secondary Education Childcare and Youth Development (SECCYD) dataset, I plan to use a longitundal fixed effects approach. Unfortunately, this approach makes examining supportive parenting as a mediator difficult because the items that assess supportive parenting change at different assessment points." /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.50 with even 4.0.0" />
+
+
+<link rel="canonical" href="/post/2016-07-25-idiographicfilter/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Looking Through the Idiographic Filter" />
+<meta property="og:description" content="For my dissertation, I&rsquo;m going to apply causal inference techniques to three separate datasets to examine the impact of family income on school readiness skills, while examining supportive parenting and cognitive stimulation as mediators. For one dataset, the Secondary Education Childcare and Youth Development (SECCYD) dataset, I plan to use a longitundal fixed effects approach. Unfortunately, this approach makes examining supportive parenting as a mediator difficult because the items that assess supportive parenting change at different assessment points." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2016-07-25-idiographicfilter/" /><meta property="article:published_time" content="2016-07-25T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2016-07-25T00:00:00&#43;00:00"/>
+
+<meta itemprop="name" content="Looking Through the Idiographic Filter">
+<meta itemprop="description" content="For my dissertation, I&rsquo;m going to apply causal inference techniques to three separate datasets to examine the impact of family income on school readiness skills, while examining supportive parenting and cognitive stimulation as mediators. For one dataset, the Secondary Education Childcare and Youth Development (SECCYD) dataset, I plan to use a longitundal fixed effects approach. Unfortunately, this approach makes examining supportive parenting as a mediator difficult because the items that assess supportive parenting change at different assessment points.">
+
+
+<meta itemprop="datePublished" content="2016-07-25T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2016-07-25T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1206">
+
+
+
+<meta itemprop="keywords" content="measurement invariance,idiographic filter," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Looking Through the Idiographic Filter"/>
+<meta name="twitter:description" content="For my dissertation, I&rsquo;m going to apply causal inference techniques to three separate datasets to examine the impact of family income on school readiness skills, while examining supportive parenting and cognitive stimulation as mediators. For one dataset, the Secondary Education Childcare and Youth Development (SECCYD) dataset, I plan to use a longitundal fixed effects approach. Unfortunately, this approach makes examining supportive parenting as a mediator difficult because the items that assess supportive parenting change at different assessment points."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo"></a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo"></a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Looking Through the Idiographic Filter</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-07-25 </span>
+        <div class="post-category">
+            <a href="/categories/r/"> R </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#an-example">An Example</a></li>
+</ul></li>
+<li><a href="#step-1">Step 1</a></li>
+<li><a href="#step-2">Step 2</a></li>
+<li><a href="#step-3a">Step 3a.</a></li>
+<li><a href="#step-3b">Step 3b.</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>For my dissertation, I&rsquo;m going to apply causal inference techniques to three separate datasets to examine the impact of family income on school readiness skills, while examining supportive parenting and cognitive stimulation as mediators. For one dataset, the Secondary Education Childcare and Youth Development (SECCYD) dataset, I plan to use a longitundal fixed effects approach. Unfortunately, this approach makes examining supportive parenting as a mediator difficult because the items that assess supportive parenting change at different assessment points. As such, the change that I am examining in the longitudinal fixed effects approach may be true change, or may be due to a change in measurement. But, an idiographic filter may solve this problem. A BIG thank you to <a href="http://people.virginia.edu/~gtd9fe/">Geneva Dodson</a> for introducing this method to me and sharing her awesome dissertation with me.</p>
+
+<p>With an idiographic filter, we can test whether supportive parenting is the same over time; we fix autoregressive parameter of supportive parenting to by the same across ages (assessment points). If model fit does not worsen, then we have evidence that the construct is the same at each assessment, even when its indicators change.</p>
+
+<p>This test can be represented as an equation. In the dataset for my dissertation, I have approximately 1,000 persons (n) measured five times. Supportive parenting is measured with five indicators (p), and I am attempting to estimate one common factor (k).</p>
+
+<p>$$ Y = \wedge F + E $$                              (1)</p>
+
+<p>where Y is an n (1,000) × p (five) matrix of observations, $$ \wedge $$ is an n × k (1) matrix of factor loadings, F is a k × p matrix of factor scores, and E is an n × p matrix of errors. In the terms of my diss, Y is the observed indicators of supportive parenting, $$ \wedge $$ is each assessment points&rsquo; estimate of supportive parenting, and F is the factor scores.</p>
+
+<p>The factors scores themselves can also be predicted:</p>
+
+<p>$$ F = \wedge * F * + E * $$                            (2)</p>
+
+<p>in which F is a k × p matrix of first-order factor scores, $$ \wedge * $$ is a k* × k matrix of (second order or regression estimates), F* is a k* × p matrix of (second order or regression) factor scores, and E* is a k × p matrix of (second order or regression) errors. In terms of my diss, F is the observed factor scores of supportive parenting, $$ \wedge * $$ is the autoregressive parameter of supportive parenting, and F* is the autoregressive parameter of cognitive stimulation for each timepoint.</p>
+
+<p>Putting it altogether, we have the following:</p>
+
+<p>$$ Y = \wedge(\wedge * F * + E *) + E $$                (3)</p>
+
+<p>In terms of my diss (SP = Supportive Parenting):</p>
+
+<p>SP = SPFactorLoadings(AutoRegressiveParameterSample*AutoRegressiveParameterTimePoint + Error) + Error</p>
+
+<p>With the idiographic filter, invariance is imposed on the terms within the paranetheses (AutoRegressiveParameterTimePoint + Error). The loadings themselves can than vary across assessment points and items, but the autoregressive parameter and error of the factor scores must be constant because we are filtering out idiographic (person-centered; or in my case, group-specific) information). Hence, the idiographic filter.</p>
+
+<p>Nesselroade, Gerstoff, Hardy, and Ram (2007) present an intuitive application of this procedure. Consider the calculation of the area for a triangle (<sup>1</sup>&frasl;<sub>2</sub> <em>bh</em>), circle ( $$ \pi $$ <em>R^2</em>), and square (<em>lw</em>). As they currently stand, the areas are not comparable. BUT, the volume calculation is the same (<em>V = A x S</em>) across triangles, circles, and squares, and so A and V have the same meaning from one group to another, but the calculation for area is idiographic.</p>
+
+<p>Using the idiographic filter is comprised of three steps:</p>
+
+<ol>
+<li>Fit the latent variables.</li>
+<li>Add the regression parameter.</li>
+<li>Impose equality restraints across families in the following order:
+
+<ol>
+<li>Regression parameter</li>
+<li>The variance of predicted supportive parenting at each timepoint (the
+error of the regression parameter).</li>
+</ol></li>
+</ol>
+
+<h2 id="an-example">An Example</h2>
+
+<h1 id="step-1">Step 1</h1>
+
+<p>First, we fit the latent variables at each timepoint, but we don&rsquo;t estimate the autoregressive parameter.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{% raw %}
+
+library(simsem)
+
+Model &lt;- &#39;
+
+SP_1 =~ 1*y1 + 0.6*y2 + 0.7*y3
+SP_2 =~ 1*y4 + 1.1*y5 + 0.9*y6
+SP_3 =~ 1*y7 + 1.2*y8 + 1.1*y9
+
+SP_1 ~~ 0.5*SP_1
+SP_2 ~~ 0.5*SP_2
+SP_3 ~~ 0.5*SP_3
+
+SP_2 ~ 0.5*SP_1
+SP_3 ~ 0.5*SP_2
+
+y1 ~~ 0.5*y1
+y2 ~~ 1.1*y2
+y3 ~~ 0.8*y3
+y4 ~~ 0.4*y4
+y5 ~~ 0.4*y5
+y6 ~~ 0.8*y6
+y7 ~~ 0.8*y7
+y8 ~~ 0.5*y8
+y9 ~~ 0.6*y9
+
+&#39;
+
+
+dat &lt;- generate(Model, 1000)
+dat$ID &lt;- rownames(dat)
+
+
+# first step - estimate supportive parenting at each time point
+
+mod.1 &lt;-
+&#39;
+
+SP_1 =~ y1 + y2 + y3
+SP_2 =~ y4 + y5 + y6
+SP_3 =~ y7 + y8 + y9
+
+SP_2 ~ 0*SP_1
+SP_3 ~ 0*SP_2
+SP_3 ~ 0*SP_1
+&#39;
+
+fit.1 &lt;- sem(mod.1, missing=&#39;FIML&#39;, estimator=&#39;MLR&#39;, data = dat)
+summary(fit.1, fit=T, rsquare=T)
+
+{% endraw %}</pre></td></tr></table>
+</div>
+</div>
+<p>Unsurprisingly, this model does not have good fit (RMSEA = .09).</p>
+
+<h1 id="step-2">Step 2</h1>
+
+<p>Next, we add the autoregressive parameteter.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{% raw %}
+
+# second step - add the autoregressive parameters 
+
+mod.2 &lt;- 
+&#39;
+
+SP_1 =~ y1 + y2 + y3
+SP_2 =~ y4 + y5 + y6
+SP_3 =~ y7 + y8 + y9
+
+SP_2 ~ SP_1
+SP_3 ~ SP_2
+
+&#39;
+fit.2 &lt;- sem(mod.2, missing=&#39;FIML&#39;, estimator=&#39;MLR&#39;, data = dat)
+summary(fit.2, fit=T, rsquare=T)
+
+{% endraw %}</pre></td></tr></table>
+</div>
+</div>
+<p>Model fit is much improved here (RMSEA = .02).</p>
+
+<h1 id="step-3a">Step 3a.</h1>
+
+<p>We then fix the autoregressive paramaters to be equal at each timepoint.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{% raw %}
+# step 3.a -- fix the autoregressive parameters
+mod.3a &lt;- 
+&#39;
+
+SP_1 =~ y1 + y2 + y3
+SP_2 =~ y4 + y5 + y6
+SP_3 =~ y7 + y8 + y9
+
+SP_2 ~ a*SP_1
+SP_3 ~ a*SP_2
+
+&#39;
+fit.3a &lt;- sem(mod.3a, missing=&#39;FIML&#39;, estimator=&#39;MLR&#39;, data = dat)
+summary(fit.3a, fit=T, rsquare=T)
+{% endraw %}</pre></td></tr></table>
+</div>
+</div>
+<p>Model fit stays virtually the same (RMSEA = .02).</p>
+
+<h1 id="step-3b">Step 3b.</h1>
+
+<p>Finally, we fix the residual variances to be equal at each timepoint.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{% raw %}
+# Step 3b -- fix the variance of the predicted supportive parenting -- the error 
+
+mod.3b &lt;- 
+  &#39;
+
+SP_1 =~ y1 + y2 + y3
+SP_2 =~ y4 + y5 + y6
+SP_3 =~ y7 + y8 + y9
+
+SP_2 ~ a*SP_1
+SP_3 ~ a*SP_2
+
+SP_2 ~~ b*SP_2
+SP_3 ~~ b*SP_3
+
+&#39;
+fit.3b &lt;- sem(mod.3b, missing=&#39;FIML&#39;, estimator=&#39;MLR&#39;, data = dat)
+summary(fit.3b, fit=T, rsquare=T)
+
+
+{% endraw %}</pre></td></tr></table>
+</div>
+</div>
+<p>And model fit stays the same (RMSEA = .02).</p>
+
+<p>So, there is evidence that we are measuring the same construct at each time point. This result is unsurprising, I generated data that reflected the same construct three separate times. This simulation shows what you would expect in an ideal situation.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Sam Portnow</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2016-07-25
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/measurement-invariance/">measurement invariance</a>
+          <a href="/tags/idiographic-filter/">idiographic filter</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019-05-01-r-rmarkdown/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">You Were Never Really Here</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2016-07-03-missingdataivmi/">
+            <span class="next-text nav-default">Missing data in IV-cont&#39;d</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:sam.portnow@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://stackoverflow.com/users/1708405/sam" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://www.linkedin.com/in/sam-portnow-5a46992b/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/SamPortnow" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/SamPortnow" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">olOwOlo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

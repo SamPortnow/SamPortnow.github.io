@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fiml on </title>
+    <link>/tags/fiml/</link>
+    <description>Recent content in fiml on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 03 Jul 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/fiml/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Missing data in IV-cont&#39;d</title>
+      <link>/post/2016-07-03-missingdataivmi/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2016-07-03-missingdataivmi/</guid>
+      <description>In a recent post I pitted listedwise deletion against Full Information Maximum Likelihood (FIML) to see which outperformed which in an instrumental variables analysis (listwise deletion won). However, a big caveat of that analysis was that I didn&amp;rsquo;t use FIML to generate predicted values of x because lavaan can&amp;rsquo;t produce predicted values with incomplete data. So, this post is the same analysis, but with multiple imputation instead of FIML so that we can generated predicted values of x with the incomplete data.</description>
+    </item>
+    
+    <item>
+      <title>Missing data in IV</title>
+      <link>/post/2016-07-02-missingdataiv/</link>
+      <pubDate>Sat, 02 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2016-07-02-missingdataiv/</guid>
+      <description>What should you do with missing data in an instrumental variables analysis? For my dissertation, I&amp;rsquo;m using instrumental variables to examine the impact of family income on children&amp;rsquo;s cognitive skills. Having been trained as a psychologlist, there is an emphasis on handling missing data appropritately &amp;ndash; Full Information Maximum Likelihood (FIML) and Multiple Imputation (MI) are popular techniques. However, in the causal inference courses I&amp;rsquo;ve taken, there seems to be less of a focus on how to handle missing data.</description>
+    </item>
+    
+  </channel>
+</rss>
